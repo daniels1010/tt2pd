@@ -1,3 +1,11 @@
+ToDo:
+	piesaistīt DB
+	izveidot db shēmu/seederi (lai nav jāsūta vislaik db) // Lab 3 paraugs ir mapē
+	DB tabulu visi logi aprakstā (bilde)
+	Bliezt
+	
+
+
 Skati:
 	login
 	sign-up
