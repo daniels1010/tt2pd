@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\File;
+use App\Models\User;
 
 class LessonsController extends Controller
 {
@@ -22,7 +23,8 @@ class LessonsController extends Controller
     {
         $user = $request->user();
         $lessons = Lesson::all();
-        return view('lessons/index', ['user' => $user, 'lessons' => $lessons]);
+        $isTeacher = $user->isTeacher();
+        return view('lessons/index', ['user' => $user, 'lessons' => $lessons, 'isTeacher' => $isTeacher]);
     }
 
     /**
