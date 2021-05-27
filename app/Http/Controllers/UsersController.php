@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -14,12 +15,9 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $currentUser = User::findOne($request->user()->id);
-        $schoolId = $currentUser->school()->id;
+        $school = $request->user()->school;
 
-        $users = User::findAll(['school_id' => $schoolId]);
-
-        return view('users/index', compact($users));
+        return view('users/index')->with('students', $school->getStudents()->get());
     }
 
     /**
@@ -40,7 +38,30 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect('users/view');
+        $nameRule = 'required|string|min:2|max:50';
+        $rules = array(
+            'first_name' => $nameRule,
+            'last_name' => $nameRule,
+            'email' => [
+                'required',
+                'email',
+                'min:2',
+                'max:50',
+                Rule::unique('users', 'email')->where(function ($query) use ($request) {
+                    return $query->where('email', $request->email);
+                })
+            ],
+        );
+
+        $this->validate($request, $rules);
+
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->country;
+        $user->save();   
+
+        return redirect('users/' . $user->id);
     }
 
     /**
@@ -51,7 +72,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return view('users/view');
+        $user = User::where('id', $id)->first();   
+        return view('users/view')->with('user', $user);
     }
 
     /**
@@ -62,7 +84,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('users/update');
+        $user = User::where('id', $id)->first();
+        
+        return view('users/update')->with('user', $user);
     }
 
     /**
@@ -74,7 +98,13 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect('users/view');
+        $user = User::where('id', $id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect('users/' . $id);
     }
 
     /**
