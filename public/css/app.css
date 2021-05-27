@@ -10038,3 +10038,14 @@ a:hover {
 .title-under {
   margin-bottom: 100px;
 }
+
+.tabula {
+  border-collapse: collapse; 
+  width: 100%;
+}
+
+.tabula-header, .tabula-data, .tabula{
+  border: 1px solid black;
+  padding: 2px 4px;
+}
+  
