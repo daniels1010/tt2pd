@@ -10002,3 +10002,39 @@ h3 {
     border-color: #dee2e6;
   }
 }
+
+.lesson-box {
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid darkgrey;
+  color: black;
+  text-decoration: none;
+}
+
+.lesson-box-container {
+  padding: 4px;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.lesson-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lesson-thumbnail {
+  width: 100%;
+}
+
+.title {
+  font-size: 123px; 
+}
+.title-under {
+  margin-bottom: 100px;
+}

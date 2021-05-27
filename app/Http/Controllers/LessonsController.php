@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lesson;
+use App\Models\File;
 
 class LessonsController extends Controller
 {
@@ -16,9 +18,11 @@ class LessonsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('lessons/index');
+        $user = $request->user();
+        $lessons = Lesson::all();
+        return view('lessons/index', ['user' => $user, 'lessons' => $lessons]);
     }
 
     /**
@@ -28,6 +32,7 @@ class LessonsController extends Controller
      */
     public function create()
     {
+
         return view('lessons/create');
     }
 
@@ -51,7 +56,11 @@ class LessonsController extends Controller
      */
     public function show($id)
     {
-        return view('lessons/view');
+        $lesson = Lesson::where('id',$id)->get();
+        $file = File::where('id',$lesson[0]->file_id)->get();
+        // imeeedž https://i.ibb.co/1QF7bhw/missing-picture.jpg
+        // vidjio https://i.ibb.co/ZxyR7gP/missing-video.jpg
+        return view('lessons/view', ['lesson' => $lesson[0], 'file' => $file]);
     }
 
     /**
@@ -62,7 +71,8 @@ class LessonsController extends Controller
      */
     public function edit($id)
     {
-        return view('lessons/update');
+        
+        return view('lessons/update', []);
     }
 
     /**
