@@ -4,6 +4,7 @@ use App\Http\Controllers\DifficultiesController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::resource('lessons', LessonsController::class);
 Route::resource('schools', SchoolController::class);
 Route::resource('difficulties', DifficultiesController::class);
 Route::resource('files', FilesController::class);
+Route::resource('users', UsersController::class);
 
 Auth::routes();
 
