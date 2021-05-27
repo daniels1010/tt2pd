@@ -53,7 +53,7 @@
                             @if (Auth::user()->isTeacher() or Auth::user()->isAdmin())
                                 @if (Auth::user()->isAdmin())
                                     <li class="nav-item">
-                                        <a class="nav-link" href="schools">Skola</a>
+                                        <a class="nav-link" href="{{ url('schools') }}">Skola</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Visi lietotāji</a>
@@ -67,7 +67,7 @@
                                 </li>
                             @endif
                             <li class="nav-item">
-                                <a class="nav-link" href="lessons">Nodarbības</a>
+                                <a class="nav-link" href="{{ url('/lessons') }}">Nodarbības</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Profils</a>

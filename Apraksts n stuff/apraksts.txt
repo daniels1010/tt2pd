@@ -11,6 +11,5 @@ skolēnu reģistrācija
 skolu veidošana
 nodarbību izveidošana
 nodarbību piešķiršana
-nav bar
 
-
+	
