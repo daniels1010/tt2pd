@@ -45,4 +45,21 @@ class User extends Authenticatable
     {
         return $this->belongsTo(School::class);
     }
+
+    public function isAdmin()
+    {
+        if($this->type == 1) { return true; }
+        return false;
+    }
+    public function isTeacher()
+    {
+        if($this->type == 2) { return true; }
+        return false;
+    }
+    public function isStudent()
+    {
+        if($this->type == 3) { return true; }
+        return false;
+    }
+
 }
