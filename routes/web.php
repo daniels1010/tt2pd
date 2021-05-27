@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LessonsController;
+use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('lessons', LessonsController::class);
+Route::resource('schools', SchoolController::class);
 
 Auth::routes();
 
