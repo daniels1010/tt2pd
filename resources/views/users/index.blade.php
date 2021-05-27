@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+    <h1 class="title">TMIS</h1>
+    <h2 class="title-under">Tiešsaistes mūzikas instrumentu skola</h2>
+    <h3>Skolēni</h3> <hr>
     <div class="row">
         @foreach($students as $student)
             <p class="col-sm-5">{{ $student->first_name }} {{ $student->last_name }}</p>
