@@ -22,7 +22,7 @@
 		</tr>	
 		<tr>
 			<td></td>
-			<td>{!! Form::submit('Submit', ['class' => 'btn btn-submit']) !!}</td>
+			<td>{!! Form::submit('Saglabāt', ['class' => 'btn btn-primary']) !!}</td>
 		</tr>
 	</table>		
 	

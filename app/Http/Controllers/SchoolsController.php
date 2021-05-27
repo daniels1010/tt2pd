@@ -72,7 +72,9 @@ class SchoolsController extends Controller
      */
     public function edit($id)
     {
-        return view('schools/update');
+        $school = School::where('id', $id)->first();
+
+        return view('schools/update')->with('school', $school);
     }
 
     /**
@@ -84,7 +86,10 @@ class SchoolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect('schools/view');
+        $school = School::where('id', $id);
+        $school->update($request->except(['_method', '_token']));
+
+        return redirect('schools/' . $id);
     }
 
     /**
@@ -95,6 +100,7 @@ class SchoolsController extends Controller
      */
     public function destroy($id)
     {
-        return redirect('schools');
+        School::where('id', $id)->delete();
+        return redirect()->back();
     }
 }

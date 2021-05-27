@@ -7,14 +7,18 @@
     <h3>Skolas</h3> <hr>
     <div class="row">
         @foreach($schools as $school)
-            <p class="col-sm-5">{{ $school->instrument }}</p>
-            <p class="col-sm-5">{{ $school->email }}</p>
-            <p class="col-sm-1">
+            <p class="col-sm-4">{{ $school->instrument }}</p>
+            <p class="col-sm-4">{{ $school->email }}</p>
+            <p class="col-sm-2">
                 <a href="{{ url('schools/' . $school->id) }}" class="btn btn-primary">Apskatīt</a>
-            </p>
-            <p class="col-sm-1">
                 <a href="{{ url('schools/' . $school->id . '/edit') }}" class="btn btn-primary">Rediģēt</a>
+                
             </p>
+            <form class="col-sm-1" action="{{ url('/schools', ['id' => $school->id]) }}" method="post">
+                @csrf
+                <input class="btn btn-primary" type="submit" value="Dzēst" />
+                <input type="hidden" name="_method" value="delete" />
+            </form>
         @endforeach
     </div>   
     <div class="row">

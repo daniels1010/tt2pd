@@ -11,8 +11,7 @@
             <p class="col-sm-4">{{ $student->email }}</p>
             <p class="col-sm-2">
                 <a href="{{ url('users/' . $student->id) }}" class="btn btn-primary">Apskatīt</a>
-                <a href="{{ url('users/' . $student->id . '/edit') }}" class="btn btn-primary">Rediģēt</a>
-                
+                <a href="{{ url('users/' . $student->id . '/edit') }}" class="btn btn-primary">Rediģēt</a>                
             </p>
             <form class="col-sm-1" action="{{ url('/users', ['id' => $student->id]) }}" method="post">
                 @csrf
