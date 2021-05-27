@@ -12,6 +12,9 @@
     <div class="row">
         E-pasts: {{ $user->email }}
     </div>
+    <div class="row">
+        <a href="{{ url('users/' . $user->id . '/edit') }}" class="btn btn-primary">Labot</a>
+    </div>
 
     <h3>Nodarbības piešķiršana</h3>
     <div class="row">

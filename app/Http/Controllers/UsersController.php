@@ -36,33 +36,33 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $nameRule = 'required|string|min:2|max:50';
-        $rules = array(
-            'first_name' => $nameRule,
-            'last_name' => $nameRule,
-            'email' => [
-                'required',
-                'email',
-                'min:2',
-                'max:50',
-                Rule::unique('users', 'email')->where(function ($query) use ($request) {
-                    return $query->where('email', $request->email);
-                })
-            ],
-        );
+    // public function store(Request $request)
+    // {
+    //     $nameRule = 'required|string|min:2|max:50';
+    //     $rules = array(
+    //         'first_name' => $nameRule,
+    //         'last_name' => $nameRule,
+    //         'email' => [
+    //             'required',
+    //             'email',
+    //             'min:2',
+    //             'max:50',
+    //             Rule::unique('users', 'email')->where(function ($query) use ($request) {
+    //                 return $query->where('email', $request->email);
+    //             })
+    //         ],
+    //     );
 
-        $this->validate($request, $rules);
+    //     $this->validate($request, $rules);
 
-        $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->country;
-        $user->save();   
+    //     $user = new User();
+    //     $user->school_id = $request->user()->school->id;
+    //     $user->type = 3;
+    //     $user->fill($request->all());
+    //     $user->save();
 
-        return redirect('users/' . $user->id);
-    }
+    //     return redirect('users/' . $user->id);
+    // }
 
     /**
      * Display the specified resource.
@@ -99,10 +99,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::where('id', $id);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->save();
+        $user->update($request->except(['_method', '_token']));
 
         return redirect('users/' . $id);
     }
@@ -115,6 +112,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        return redirect('users');
+        User::where('id', $id)->delete();
+        return redirect()->back();
     }
 }

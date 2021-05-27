@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\School;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
-class SchoolController extends Controller
+class SchoolsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,8 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        return view('schools/index');
+        $schools = School::all();
+        return view('schools/index')->with('schools', $schools);
     }
 
     /**
@@ -34,7 +37,19 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect('schools/view');
+        $rules = [
+            'instrument' => 'required|string|min:2|max:50',
+            'logo' => 'string|min:2|max:255',
+            'email' => ['required', 'email'],
+        ];
+
+        $this->validate($request, $rules);
+
+        $school = new School();
+        $school->fill($request->all());
+        $school->save();
+
+        return redirect('schools/' . $school->id);
     }
 
     /**
@@ -45,7 +60,8 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        return view('schools/view');
+        $school = School::where('id', $id)->first();   
+        return view('schools/view')->with('school', $school);
     }
 
     /**
