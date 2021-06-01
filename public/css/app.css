@@ -10002,8 +10002,30 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.welcome-title {
+  font-size: 250px;
+  padding-top: 50px;
+  color: white;
+}
 
-.lesson-box {
+.welcome-title-under {
+  color: white;
+}
+
+.welcome-box {
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  background-image: url("https://ma-hub.imgix.net/wp-images/2019/05/29221842/royalty-free-music-Piano.jpg");
+  background-size: 100%;
+}
+
+.welcome-image {
+  width: 100vw;
+}
+
+lesson-box {
   padding: 15px;
   border-radius: 14px;
   border: 1px solid darkgrey;
@@ -10033,19 +10055,19 @@ a:hover {
 }
 
 .title {
-  font-size: 123px; 
+  font-size: 123px;
 }
+
 .title-under {
   margin-bottom: 100px;
 }
 
 .tabula {
-  border-collapse: collapse; 
+  border-collapse: collapse;
   width: 100%;
 }
 
-.tabula-header, .tabula-data, .tabula{
+.tabula-header, .tabula-data, .tabula {
   border: 1px solid black;
   padding: 2px 4px;
 }
-  
