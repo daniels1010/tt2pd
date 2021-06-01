@@ -37,9 +37,11 @@ class LessonsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('lessons/create');
+        $schoolId = $request->user()->school_id;
+        $files = File::where(['school_id' => $schoolId])->pluck('name', 'id');
+        return view('lessons/create', ['files' => $files]);
     }
 
     /**
@@ -54,6 +56,7 @@ class LessonsController extends Controller
             'title' => 'required|string|min:5|max:50',
             'description' => 'string|min:2|max:255|nullable',
             'poster_url' => 'required|string|min:5|max:500',
+            'file_id' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -66,7 +69,6 @@ class LessonsController extends Controller
         $lesson->fill($request->all());
         $lesson->school_id = $schoolId;
         $lesson->author_id = $userId;
-        $lesson->file_id = 1;
         $lesson->created_at = date('Y-m-d H:i:s');
         $lesson->save();
 
@@ -94,10 +96,12 @@ class LessonsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        
-        return view('lessons/update', []);
+        $lesson = Lesson::where('id', $id)->first();
+        $schoolId = $request->user()->school_id;
+        $files = File::where(['school_id' => $schoolId])->pluck('name', 'id');
+        return view('lessons/update', ['lesson' => $lesson, 'files' => $files]);
     }
 
     /**
@@ -109,7 +113,10 @@ class LessonsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect('lessons/view');
+        $lesson = Lesson::where('id', $id);
+        $lesson->update($request->except(['_method', '_token']));
+
+        return redirect('lessons/' . $id);
     }
 
     /**
@@ -120,6 +127,7 @@ class LessonsController extends Controller
      */
     public function destroy($id)
     {
+        Lesson::where('id', $id)->delete();
         return redirect('lessons');
     }
 }

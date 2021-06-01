@@ -30,10 +30,12 @@
                 <h4>{{ $message }} </h4>
                 @enderror
             </div>   
-        
-            
 
-            Te vajag dropdownu ar failiem
+            <div class="form-group">
+                {!! Form::select('file_id',  $files, null, ['class' => 'form-control']) !!}
+            </div>
+                   
+
 
             <div class="form-group">
                 <a href="{{ url('lessons') }}" class="btn btn-primary">Atpakaļ</a>
