@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Difficulty;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\File;
+use App\Models\LessonsDifficulties;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\Diff\Diff;
 
 class LessonsController extends Controller
 {
@@ -129,5 +132,50 @@ class LessonsController extends Controller
     {
         Lesson::where('id', $id)->delete();
         return redirect('lessons');
+    }
+
+    public function addDifficulties($id){
+        $lesson = Lesson::where('id', $id)->first();
+        $lessonDifficulties = $lesson->getLessonDifficulties()->all();
+        $schoolDifficulties = Difficulty::where(['school_id' => $lesson->school_id])->pluck('name', 'id');
+
+        $availaleDifficulties = [];
+        foreach($schoolDifficulties as $sdiffId => $sdiff){
+            $isUsed = false;
+            foreach($lessonDifficulties as $ldiff){
+                if($sdiffId == $ldiff->difficulty_id){
+                    $isUsed = true;
+                } 
+            }
+
+            if(!$isUsed){
+                $availaleDifficulties[$sdiffId] = $sdiff;
+            }
+        }
+
+        return view('lessons/add-difficulty', [
+            'lessonDifficulties' => $lessonDifficulties, 
+            'lessonId' => $id,
+            'schoolDifficulties' => $availaleDifficulties,
+        ]);
+    }
+
+    public function saveDifficulty(Request $request, $id){
+        $rData = $request->all();
+        $validator = Validator::make($rData, [
+            'value' => 'required|integer|min:0|max:10',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        $lessonDiff = new LessonsDifficulties();
+        $lessonDiff->fill($rData);
+        $lessonDiff->lesson_id = $id;
+        $lessonDiff->created_at = date('Y-m-d H:i:s');
+        $lessonDiff->save();
+
+        return redirect()->back();
     }
 }

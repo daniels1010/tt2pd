@@ -20,14 +20,20 @@
 			<td>{!! Form::label('poster_url', 'Bildes adrese', ['class' => 'control-label']) !!}</td>
 			<td>{!! Form::text('poster_url', null, ['class' => 'form-control', 'size' => 50, ]) !!}</td>
 		</tr>	
-
         <tr>
             <td>{!! Form::label('file_id', 'Fails', ['class' => 'control-label']) !!}</td>
 			<td>{!! Form::select('file_id',  $files, null, ['class' => 'form-control']) !!}</td>
         </tr>
 		<tr>
-			<td></td>
 			<td>{!! Form::submit('Saglabāt', ['class' => 'btn btn-primary']) !!}</td>
+			<td>
+				<a href="{{ url('lessons/' . $lesson->id . '/add-diff') }}" class="btn btn-primary">Pievinot sarežģītības</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+
+			</td>
 		</tr>
 	</table>		
 	
