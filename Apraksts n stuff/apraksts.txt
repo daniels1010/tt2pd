@@ -1,12 +1,14 @@
 // nav bar admin
-nodarbibu veidošanas backend
-nodarbibu piešķiršana
+//nodarbibu veidošanas backend
 // sarežģītības izveide
+//home lapa skats
+// skolēnu saraksts (students)
+// failu izveides skats
+
+nodarbibu piešķiršana
 sarežģītību pievienošana
-home lapa skats
 login skats
-skolēnu saraksts (students)
-failu izveides skats
+skolenu login
 
 
 

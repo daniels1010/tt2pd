@@ -10004,7 +10004,7 @@ h3 {
 }
 .welcome-title {
   font-size: 250px;
-  padding-top: 200px;
+  padding-top: 50px;
   color: white;
 }
 
@@ -10013,10 +10013,12 @@ h3 {
 }
 
 .welcome-box {
+  background-repeat: no-repeat;
   width: 100%;
   min-height: 100vh;
   text-align: center;
   background-image: url("https://ma-hub.imgix.net/wp-images/2019/05/29221842/royalty-free-music-Piano.jpg");
+  background-size: 100%;
 }
 
 .welcome-image {
