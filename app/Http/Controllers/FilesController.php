@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\File;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class FilesController extends Controller
 {
@@ -13,7 +16,10 @@ class FilesController extends Controller
      */
     public function index()
     {
-        return view('files/index');
+        $schoolId = Auth::user()->school_id;
+        $files = File::where(['school_id' => $schoolId])->get();
+        
+        return view('files/index', ['files' => $files]);
     }
 
     /**

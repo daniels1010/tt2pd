@@ -28,6 +28,7 @@ class LessonsController extends Controller
         $lessons = Lesson::all();
         $isTeacher = $user->isTeacher();
         $isAdmin = $user->isAdmin();
+        
         return view('lessons/index', ['user' => $user, 'lessons' => $lessons, 'isTeacher' => $isTeacher, 'isAdmin' => $isAdmin]);
     }
 
@@ -38,7 +39,6 @@ class LessonsController extends Controller
      */
     public function create()
     {
-
         return view('lessons/create');
     }
 
@@ -50,10 +50,6 @@ class LessonsController extends Controller
      */
     public function store(Request $request)
     {
-        
-
-
-        
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|min:5|max:50',
             'description' => 'string|min:2|max:255|nullable',
@@ -85,8 +81,8 @@ class LessonsController extends Controller
      */
     public function show($id)
     {
-        $lesson = Lesson::where('id',$id)->first();
-        $file = File::where('id',$lesson->file_id)->get();
+        $lesson = Lesson::where('id', $id)->first();
+        $file = File::where('id', $lesson->file_id)->get();
         // imeeedž https://i.ibb.co/1QF7bhw/missing-picture.jpg
         // vidjio https://i.ibb.co/ZxyR7gP/missing-video.jpg
         return view('lessons/view', ['lesson' => $lesson, 'file' => $file]);

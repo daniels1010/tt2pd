@@ -14,11 +14,11 @@ class LessonSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('files')->insert([
-        //     'name' => 'Pirmais fails',
-        //     'url' => 'https://www.youtube.com/embed/w4a2ge9N31E',
-        //     'poster_url' => 'Purla/uz/bildi',
-        // ]);
+        DB::table('files')->insert([
+            'school_id' => 1,
+            'name' => 'Pirmais fails',
+            'url' => 'https://www.youtube.com/embed/w4a2ge9N31E',
+        ]);
 
         DB::table('lessons')->insert([
             'school_id' => 1,

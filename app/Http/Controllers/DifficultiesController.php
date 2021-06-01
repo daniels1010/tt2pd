@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Difficulty;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class DifficultiesController extends Controller
 {
@@ -13,7 +16,10 @@ class DifficultiesController extends Controller
      */
     public function index()
     {
-        return view('difficulties/index');
+        $schoolId = Auth::user()->school_id;
+        $difficulties = Difficulty::where(['school_id' => $schoolId])->get();
+        
+        return view('difficulties/index', ['difficulties' => $difficulties]);
     }
 
     /**
@@ -34,8 +40,22 @@ class DifficultiesController extends Controller
      */
     public function store(Request $request)
     {
-        // store n shit
-        return redirect('difficulties/view');
+        $rData = $request->all();
+        $validator = Validator::make($rData, [
+            'name' => 'required|string|min:2|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        $difficulty = new Difficulty();
+        $difficulty->fill($rData);
+        $difficulty->school_id = Auth::user()->school_id;
+        $difficulty->created_at = date('Y-m-d H:i:s');
+        $difficulty->save();
+
+        return redirect('difficulties/' . $difficulty->id);
     }
 
     /**
@@ -46,7 +66,9 @@ class DifficultiesController extends Controller
      */
     public function show($id)
     {
-        return view('difficulties/view');
+        $difficulty = Difficulty::where('id', $id)->first();
+
+        return view('difficulties/view', ['difficulty' => $difficulty]);
     }
 
     /**
@@ -57,7 +79,8 @@ class DifficultiesController extends Controller
      */
     public function edit($id)
     {
-        return view('difficulties/update');
+        $difficulty = Difficulty::where('id', $id)->first();
+        return view('difficulties/update', ['difficulty' => $difficulty]);
     }
 
     /**
@@ -69,7 +92,10 @@ class DifficultiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect('difficulties/view');
+        $difficulty = Difficulty::where('id', $id);
+        $difficulty->update($request->except(['_method', '_token']));
+
+        return redirect('difficulties/' . $id);
     }
 
     /**
@@ -80,6 +106,7 @@ class DifficultiesController extends Controller
      */
     public function destroy($id)
     {
-        return redirect('difficulties');
+        Difficulty::where('id', $id)->delete();
+        return redirect()->back();
     }
 }
