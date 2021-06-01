@@ -18,7 +18,7 @@ class FilesController extends Controller
     {
         $schoolId = Auth::user()->school_id;
         $files = File::where(['school_id' => $schoolId])->get();
-        
+
         return view('files/index', ['files' => $files]);
     }
 
@@ -40,8 +40,23 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        // store n shit
-        return redirect('files/view');
+        $rData = $request->all();
+        $validator = Validator::make($rData, [
+            'name' => 'required|string|min:2|max:255',
+            'url' => 'required|string|min:2|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        $file = new File();
+        $file->fill($rData);
+        $file->school_id = Auth::user()->school_id;
+        $file->created_at = date('Y-m-d H:i:s');
+        $file->save();
+
+        return redirect('files/' . $file->id);
     }
 
     /**
@@ -52,7 +67,9 @@ class FilesController extends Controller
      */
     public function show($id)
     {
-        return view('files/view');
+        $file = File::where('id', $id)->first();
+
+        return view('files/view', ['file' => $file]);
     }
 
     /**
@@ -63,7 +80,8 @@ class FilesController extends Controller
      */
     public function edit($id)
     {
-        return view('files/update');
+        $file = File::where('id', $id)->first();
+        return view('files/update', ['file' => $file]);
     }
 
     /**
@@ -75,7 +93,10 @@ class FilesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect('files/view');
+        $file = File::where('id', $id);
+        $file->update($request->except(['_method', '_token']));
+
+        return redirect('files/' . $id);
     }
 
     /**
@@ -86,6 +107,7 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
+        File::where('id', $id)->delete();
         return redirect('files');
     }
 }

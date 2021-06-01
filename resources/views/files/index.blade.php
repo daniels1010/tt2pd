@@ -16,14 +16,14 @@
     </div>
     <hr>
     <div class="row">
-        @foreach($difficulties as $difficulty)
-            <p class="col-sm-4">{{ $difficulty->name }}</p>
-            <p class="col-sm-4">{{ $difficulty->created_at }}</p>
+        @foreach($files as $file)
+            <p class="col-sm-4">{{ $file->name }}</p>
+            <p class="col-sm-4">{{ $file->created_at }}</p>
             <p class="col-sm-2">
-                <a href="{{ url('difficulties/' . $difficulty->id) }}" class="btn btn-primary">Apskatīt</a>
-                <a href="{{ url('difficulties/' . $difficulty->id . '/edit') }}" class="btn btn-primary">Rediģēt</a>                
+                <a href="{{ url('files/' . $file->id) }}" class="btn btn-primary">Apskatīt</a>
+                <a href="{{ url('files/' . $file->id . '/edit') }}" class="btn btn-primary">Rediģēt</a>                
             </p>
-            <form class="col-sm-1" action="{{ url('/difficulties', ['id' => $difficulty->id]) }}" method="post">
+            <form class="col-sm-1" action="{{ url('/files', ['id' => $file->id]) }}" method="post">
                 @csrf
                 <input class="btn btn-primary" type="submit" value="Dzēst" />
                 <input type="hidden" name="_method" value="delete" />
@@ -31,8 +31,8 @@
         @endforeach
     </div>   
     <div class="row">
-        <a href="{{ url('difficulties/create') }}" class="btn btn-primary">
-            Jauna sarežģītība
+        <a href="{{ url('files/create') }}" class="btn btn-primary">
+            Jauns fails
         </a>
     </div>
 </div>
