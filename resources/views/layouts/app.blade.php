@@ -38,6 +38,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                            
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">Ielogoties</a>
@@ -46,7 +47,7 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Reģistrēties</a>
+                                    <a class="nav-link" href="{{ url('/register?s=1') }}">Reģistrēties</a>
                                 </li>
                             @endif
                         @else
@@ -59,15 +60,20 @@
                                 </li>
                             @endif
                             @if (Auth::user()->isTeacher())
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/users') }}">Skolēni</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/difficulties') }}">Sarežģītības</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/lessons') }}">Nodarbības</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/users') }}">Skolēni</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/difficulties') }}">Sarežģītības</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/lessons') }}">Nodarbības</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->isStudent())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="lessons">Nodarbības</a>
+                                </li>
                             @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

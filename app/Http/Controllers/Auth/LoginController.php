@@ -39,15 +39,11 @@ class LoginController extends Controller
             return '/users';
             break; 
       
-        case '3':
+        default:
             return '/lessons';
             break; 
-        
-          default:
-            return '/home'; 
-          break;
         }
-      }
+    }
 
     /**
      * Create a new controller instance.
