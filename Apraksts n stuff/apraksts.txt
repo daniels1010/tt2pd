@@ -1,15 +1,8 @@
-Skati:
-	login
-	sign-up
-	visu nodarbību/galvenā
-	nodarbības skats
-	izveidot nodarbību
-	skolēnu saraksts 
-	skolēna profils? piešķirt nodarbību // šit myb vienā skatā ar skolēnu sarakstu lai mazāks čakars, vnk tabula | vārds | uzvārds | (piešķirt nodarbību dropdowns) | or smthn
-	
-skolēnu reģistrācija
-skolu veidošana
-nodarbību izveidošana
-nodarbību piešķiršana
+nav bar admin
+nodarbibu veidošanas backend
+nodarbibu piešķiršana
+sarežģītības
+home lapa skats
+login skats
 
-	
+

@@ -17,56 +17,47 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('schools')->insert([
-        //     'instrument' => 'ģitāra',
-        //     'logo' => '',
-        //     'email' => 'school@gmail.com',
-        // ]);
+        DB::table('schools')->insert([
+            'instrument' => 'ģitāra',
+            'logo' => '',
+            'email' => 'school@gmail.com',
+        ]);
 
-        // DB::table('users')->insert([
-        //     'school_id' => 1,
-        //     'first_name' => 'Admins',
-        //     'last_name' => 'Testeris',
-        //     'type' => 1,
-        //     'email' => 'admin@gmail.com',
-        //     'password' => Hash::make('admin'),
-        // ]);
+        DB::table('users')->insert([
+            'school_id' => 1,
+            'first_name' => 'Jānis',
+            'last_name' => 'Bānis',
+            'type' => 3,
+            'email' => 'janis@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
 
-        // DB::table('users')->insert([
-        //     'school_id' => 1,
-        //     'first_name' => 'Jānis',
-        //     'last_name' => 'Bānis',
-        //     'type' => 3,
-        //     'email' => 'janis@gmail.com',
-        //     'password' => Hash::make('1234'),
-        // ]);
+        DB::table('users')->insert([
+            'school_id' => 1,
+            'first_name' => 'Andris',
+            'last_name' => 'Kāposts',
+            'type' => 3,
+            'email' => 'andris@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
 
-        // DB::table('users')->insert([
-        //     'school_id' => 1,
-        //     'first_name' => 'Andris',
-        //     'last_name' => 'Kāposts',
-        //     'type' => 3,
-        //     'email' => 'andris@gmail.com',
-        //     'password' => Hash::make('1234'),
-        // ]);
+        DB::table('users')->insert([
+            'school_id' => 1,
+            'first_name' => 'Andrejs',
+            'last_name' => 'Burkāns ',
+            'type' => 3,
+            'email' => 'andrejs@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
 
-        // DB::table('users')->insert([
-        //     'school_id' => 1,
-        //     'first_name' => 'Andrejs',
-        //     'last_name' => 'Burkāns ',
-        //     'type' => 3,
-        //     'email' => 'andrejs@gmail.com',
-        //     'password' => Hash::make('1234'),
-        // ]);
-
-        // DB::table('users')->insert([
-        //     'school_id' => 1,
-        //     'first_name' => 'Imants',
-        //     'last_name' => 'Gudrais ',
-        //     'type' => 2,
-        //     'email' => 'teacher@gmail.com',
-        //     'password' => Hash::make('1234'),
-        // ]);
+        DB::table('users')->insert([
+            'school_id' => 1,
+            'first_name' => 'Imants',
+            'last_name' => 'Gudrais ',
+            'type' => 2,
+            'email' => 'teacher@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
 
         DB::table('users')->insert([
             'school_id' => 1,

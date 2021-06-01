@@ -5,7 +5,7 @@
     <h1 class="title">TMIS</h1>
     <h2 class="title-under">Tiešsaistes mūzikas instrumentu skola</h2>
     <div class="container lesson-container">
-        @if ($isTeacher or $isAdmin)
+        @if ($isTeacher)
             <table class="tabula">
                 <tr>
                     <th class="tabula-header">Nodarbības nosaukums</th>
@@ -33,16 +33,21 @@
 
         @else
         <div class="row">
-            <?php foreach ($lessons as $lesson) { ?>
-                <div class="col-lg-6 lesson-box-container">
-                    <div class="lesson-box ">  
-                        <a href="lessons/{{ $lesson->id }}">
-                            <h2>{{ $lesson->title }}</h2>
-                            <img class="lesson-thumbnail" src="{{ $lesson->poster_url }}" alt="Picture is missing">
-                        </a>
+                    
+            <?php if (count($lessons) > 0) {
+                foreach ($lessons as $lesson) { ?>
+                    <div class="col-lg-6 lesson-box-container">
+                        <div class="lesson-box ">  
+                            <a href="lessons/{{ $lesson->id }}">
+                                <h2>{{ $lesson->title }}</h2>
+                                <img class="lesson-thumbnail" src="{{ $lesson->poster_url }}" alt="Picture is missing">
+                            </a>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
+            <?php }
+            }  else {
+                ?> <h2>Jums nav piešķirtas nevienas nodarbības</h2><?php
+            }?>
         </div>
         @endif
     </div>
