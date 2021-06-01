@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -15,8 +16,15 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $school = $request->user()->school;
+        $user = Auth::user();
+        if ($user->isTeacher()){
+            $school = $user->school;
+            $students = $school->getStudents()->get();
+            return view('users/index')->with('students', $students);
+        }
+        
 
+        $school = $request->user()->school;
         return view('users/index')->with('students', $school->getStudents()->get());
     }
 

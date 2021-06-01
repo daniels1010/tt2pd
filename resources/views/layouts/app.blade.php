@@ -50,28 +50,25 @@
                                 </li>
                             @endif
                         @else
-                            @if (Auth::user()->isTeacher() or Auth::user()->isAdmin())
-                                @if (Auth::user()->isAdmin())
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('schools') }}">Skola</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Visi lietotāji</a>
-                                    </li>
-                                @endif
+                            @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Skolēni</a>
+                                    <a class="nav-link" href="{{ url('/schools') }}">Skolas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Sarežģītības</a>
+                                    <a class="nav-link" href="{{ url('/users') }}">Visi lietotāji</a>
                                 </li>
                             @endif
+                            @if (Auth::user()->isTeacher())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/users') }}">Skolēni</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/difficulties') }}">Sarežģītības</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/lessons') }}">Nodarbības</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Profils</a>
-                            </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
