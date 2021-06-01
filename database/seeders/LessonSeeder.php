@@ -29,5 +29,12 @@ class LessonSeeder extends Seeder
             'poster_url' => 'https://i.ibb.co/1QF7bhw/missing-picture.jpg',
             'created_at' => date('Y-m-d H:i:s'),
         ]);
+
+        DB::table('user_lessons')->insert([
+            'school_id' => 1,
+            'user_id' => 3,
+            'lesson_id' => 1,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
     }
 }

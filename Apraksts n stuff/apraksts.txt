@@ -1,14 +1,16 @@
 // nav bar admin
 //nodarbibu veidošanas backend
 // sarežģītības izveide
-//home lapa skats
+// home lapa skats
 // skolēnu saraksts (students)
 // failu izveides skats
 // login skats
 // skolenu login
 // register skats
-
+// sarežģītību pievienošana
 nodarbibu piešķiršana
-sarežģītību pievienošana
 
 
+nodarbību piešķirtšana
+uzspiež dropdown -> izvēlas nodarbību -> piešķirt
+db tabula UserLessons (UserID, LessonID)

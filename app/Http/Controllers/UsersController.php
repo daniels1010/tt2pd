@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use App\Models\UserLessons;
 use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
@@ -21,8 +23,7 @@ class UsersController extends Controller
             $school = $user->school;
             $students = $school->getStudents()->get();
             return view('users/index')->with('students', $students);
-        }
-        
+        }  
 
         $school = $request->user()->school;
         return view('users/index')->with('students', $school->getStudents()->get());
@@ -81,7 +82,17 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)->first();   
-        return view('users/view')->with('user', $user);
+
+        $allLessons = Lesson::all();
+        $alreadyAssignedLessons = UserLessons::where(['user_id' => $id])->get();
+
+        // var_dump($allLessons); die();
+
+        // $selectOption = $_POST['assignLesson'];
+        // if (isset($selectOption)) { var_dump($selectOption); die();}
+        
+
+        return view('users/view', ['userLessons' => $alreadyAssignedLessons])->with('user', $user);
     }
 
     /**
@@ -93,7 +104,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::where('id', $id)->first();
-        
+  
         return view('users/update')->with('user', $user);
     }
 
