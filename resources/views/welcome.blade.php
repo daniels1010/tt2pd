@@ -30,7 +30,7 @@
                         <a style="font-size:20px;" href="{{ route('login') }}" class="text-sm text-gray-700 underline">Pieslēgties</a>
 
                         @if (Route::has('register'))
-                            <a style="font-size:20px;" href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Reģistrēties</a>
+                            <a style="font-size:20px;" href="{{ url('/register?s=1') }}" class="ml-4 text-sm text-gray-700 underline">Reģistrēties</a>
                         @endif
                     @endauth
                 </div>

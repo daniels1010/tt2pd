@@ -1,21 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<div class="container-fluid" style="margin: 0; padding: 0; width: 100%;">
+    <div class="welcome-box">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card" style="margin-top: 150px;">
 
                 <div class="card-body">
-                    <h1>Wsup</h1>
+                   
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    <h1 class="welcome-heading">Sveicināti TMIS!</h1>
                 </div>
             </div>
         </div>
