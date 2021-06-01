@@ -9,5 +9,5 @@ class Lesson extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','description','poster_url','file_id']; 
+    protected $fillable = ['title', 'description', 'poster_url', 'file_id']; 
 }
