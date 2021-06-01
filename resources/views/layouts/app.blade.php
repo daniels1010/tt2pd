@@ -60,7 +60,7 @@
                             @endif
                             @if (Auth::user()->isTeacher())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/students') }}">Skolēni</a>
+                                <a class="nav-link" href="{{ url('/users') }}">Skolēni</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/difficulties') }}">Sarežģītības</a>
