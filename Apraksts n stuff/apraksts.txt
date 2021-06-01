@@ -1,8 +1,10 @@
-nav bar admin
+// nav bar admin
 nodarbibu veidošanas backend
 nodarbibu piešķiršana
 sarežģītības
 home lapa skats
 login skats
+skolēnu saraksts (students)
+
 
 

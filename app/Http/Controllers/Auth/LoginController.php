@@ -32,7 +32,7 @@ class LoginController extends Controller
         $type = Auth::user()->type;
         switch ($type) {
           case '1':
-            return '/admin_dashboard';
+            return '/schools';
 
         break;
         case '2':
