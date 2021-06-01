@@ -16,9 +16,9 @@ class School extends Model
         return $this->hasMany(User::class);
     }
 
-    public function teacher()
+    public function getTeacher()
     {
-        return self::filterByType($this->users, 2)[0];
+        return $this->users()->where('type', '=', 2)->first();
     }
 
     public function getStudents(){

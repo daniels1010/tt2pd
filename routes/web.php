@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 Route::resource('lessons', LessonsController::class);
 Route::resource('schools', SchoolsController::class);
+Route::get('schools/{id}/add-teacher', [SchoolsController::class, 'addTeacher']);
+Route::post('schools/{id}/save-teacher', [SchoolsController::class, 'saveTeacher']);
 Route::resource('difficulties', DifficultiesController::class);
 Route::resource('files', FilesController::class);
 Route::resource('users', UsersController::class);

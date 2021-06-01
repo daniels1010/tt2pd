@@ -12,19 +12,23 @@
     <div class="row">
         E-pasts: {{ $school->email }}
     </div>
-    <div class="row">
+    <div class="form-group">
         <a href="{{ url('schools/' . $school->id . '/edit') }}" class="btn btn-primary">Labot</a>
     </div>
-
-    {{-- <h3>Nodarbības piešķiršana</h3>
-    <div class="row">
-        <form method="POST" action="{{ url('schools/assign-lesson/' . $school->id) }}">
-            @csrf
-            <label for="lesson_id">
-                Nodarbība: <input type="number">
-            </label>
-            <button class="btn btn-primary">Piešķirt</button>           
-        </form>
-    </div> --}}
+    @if($teacher)
+        <h4>Skolai jau ir pievienots skolotājs:</h4>
+        <div class="row">
+            {{ $teacher->first_name }} {{ $teacher->last_name }}
+        </div>
+        <div class="row">
+            {{ $teacher->email }}
+        </div>
+    @else
+        <div class="form-group">
+            <a href="{{ url('schools/' . $school->id . '/add-teacher') }}" class="btn btn-primary">Pievienot skolotāju</a>
+        </div>
+    @endif
+    
+    
 </div>
 @endsection
