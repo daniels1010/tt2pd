@@ -24,7 +24,7 @@
             </div>  
             <div class="form-group">
                 <label for="poster_url">
-                    Bildes adrese: <input type="text" name="poster_url">
+                    Bildes adrese: {!! Form::file(' poster_url') !!}
                 </label>
                 @error('poster_url')
                 <h4>{{ $message }} </h4>
