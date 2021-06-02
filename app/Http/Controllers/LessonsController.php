@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\File;
 use App\Models\LessonsDifficulties;
+use App\Models\UserLessons;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,10 +26,17 @@ class LessonsController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $lessons = Lesson::all();
         $isTeacher = $user->isTeacher();
         $isAdmin = $user->isAdmin();
-        
+
+
+        if ($isTeacher) {
+            $lessons = Lesson::where('school_id', $user->school_id)->get();
+        } else {
+            $asssignedLessonIds = UserLessons::where('user_id',$user->id)->pluck('lesson_id');
+            $lessons = Lesson::whereIn('id',$asssignedLessonIds)->get();
+        }
+        //var_dump($lessons->get()); die();
         return view('lessons/index', [
             'user' => $user,
             'lessons' => $lessons, 

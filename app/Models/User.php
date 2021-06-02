@@ -62,4 +62,17 @@ class User extends Authenticatable
         return $this->type == 3;
     }
 
+    public function userTypeName()
+    {
+        switch ($this->type) {
+            case 1:
+                return 'Admins';
+            case 2:
+                return 'Skolotājs';
+            case 3:
+                return 'Skolēns';
+        }
+        return 'Nezināms';
+    }
+
 }

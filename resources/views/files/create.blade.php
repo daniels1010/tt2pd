@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <form method="POST" action="{{ url('files') }}">
+        <form method="POST" action="{{ url('filess') }}">
             @csrf
             <div class="form-group">
                 <label for="name">
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <a href="{{ url('files') }}" class="btn btn-primary">Atpakaļ</a>
+                <a href="{{ url('filess') }}" class="btn btn-primary">Atpakaļ</a>
                 <button class="btn btn-primary" type="submit">Izveidot</button>  
             </div>         
         </form>

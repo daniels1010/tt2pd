@@ -72,6 +72,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/lessons') }}">Nodarbības</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/filess') }}">Faili</a>
+                                </li>
                             @endif
                             @if (Auth::user()->isStudent())
                                 <li class="nav-item">

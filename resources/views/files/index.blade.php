@@ -15,7 +15,7 @@
     <x-table 
         title="Faili"
         createText="Jauns fails" 
-        baseUrl="files" 
+        baseUrl="filess" 
         :headers="$headers"
         :models="$files" 
         :properties="$properties">

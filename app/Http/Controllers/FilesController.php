@@ -56,7 +56,7 @@ class FilesController extends Controller
         $file->created_at = date('Y-m-d H:i:s');
         $file->save();
 
-        return redirect('files/' . $file->id);
+        return redirect('filess/' . $file->id);
     }
 
     /**
@@ -96,7 +96,7 @@ class FilesController extends Controller
         $file = File::where('id', $id);
         $file->update($request->except(['_method', '_token']));
 
-        return redirect('files/' . $id);
+        return redirect('filess/' . $id);
     }
 
     /**
@@ -108,6 +108,6 @@ class FilesController extends Controller
     public function destroy($id)
     {
         File::where('id', $id)->delete();
-        return redirect('files');
+        return redirect('filess');
     }
 }

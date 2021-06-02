@@ -4,7 +4,7 @@
 <div class="container">
         {!! Form::model($file, [
 			'method' => 'PATCH',
-			'route' => ['files.update', $file->id]
+			'route' => ['filess.update', $file->id]
 		]) !!}
 
 	<table>

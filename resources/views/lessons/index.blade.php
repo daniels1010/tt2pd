@@ -26,7 +26,6 @@
             </x-table>       
         @else
         <div class="row">   
-           
             @if (count($lessons) > 0)
                 @foreach ($lessons as $lesson)
 

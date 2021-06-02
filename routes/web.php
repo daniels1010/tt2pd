@@ -36,7 +36,7 @@ Route::post('users/assign-lesson', [UsersController::class, 'assignLesson']);
 
 Route::resource('difficulties', DifficultiesController::class);
 Route::resource('lessons-difficulties', LessonsDifficultiesController::class);
-Route::resource('files', FilesController::class);
+Route::resource('filess', FilesController::class);
 
 Auth::routes();
 

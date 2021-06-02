@@ -22,11 +22,16 @@ class UsersController extends Controller
         if ($user->isTeacher()){
             $school = $user->school;
             $students = $school->getStudents()->get();
-            return view('users/index')->with('students', $students);
+            return view('users/index', [
+                'students' => $students,
+                'type' => 2,
+                'school_id' => $user->school->id,
+            ]);
         }  
-
-        $school = $request->user()->school;
-        return view('users/index')->with('students', $school->getStudents()->get());
+        return view('users/index', [
+            'students' => User::all(),
+            'type' => 1,
+        ]);
     }
 
     /**
@@ -39,9 +44,9 @@ class UsersController extends Controller
     {
         $user = User::where('id', $id)->first();
         $assignedLessonIds = UserLessons::where(['user_id' => $id])->pluck('lesson_id');
-        $availableLessons = Lesson::whereNotIn('id', $assignedLessonIds)->get();
+        $availableLessons = Lesson::whereNotIn('id', $assignedLessonIds)->where('school_id',$user->school_id)->get();
         $assignedLessons = Lesson::whereIn('id', $assignedLessonIds)->get();
-        
+        //var_dump($availableLessons); die();
         return view('users/view', [
             'assignedLessons' => $assignedLessons,
             'availableLessons' => $availableLessons,

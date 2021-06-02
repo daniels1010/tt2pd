@@ -136,8 +136,9 @@ class SchoolsController extends Controller
         $teacher = new User();
         $teacher->school_id = $id;
         $teacher->type = 2;
+        $teacher->fill($request->all()); 
         $teacher->password = Hash::make($request->password);
-        $teacher->fill($request->all());
+        
         $teacher->save();
 
         return redirect('schools/' . $id);
