@@ -13,7 +13,7 @@
 			<td>{!! Form::text('instrument', null, ['class' => 'form-control', 'size' => 50, ]) !!}</td>
 		</tr>
 		<tr>
-			<td>{!! Form::label('logo', 'Uzvārds', ['class' => 'control-label']) !!}</td>
+			<td>{!! Form::label('logo', 'Logo', ['class' => 'control-label']) !!}</td>
 			<td>{!! Form::text('logo', null, ['class' => 'form-control', 'size' => 255, ]) !!}</td>
 		</tr>
         <tr>
