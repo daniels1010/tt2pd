@@ -51,18 +51,15 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        if($this->type == 1) { return true; }
-        return false;
+        return $this->type == 1;
     }
     public function isTeacher()
     {
-        if($this->type == 2) { return true; }
-        return false;
+        return $this->type == 2;
     }
     public function isStudent()
     {
-        if($this->type == 3) { return true; }
-        return false;
+        return $this->type == 3;
     }
 
 }
