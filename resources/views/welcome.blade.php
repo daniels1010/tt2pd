@@ -38,8 +38,7 @@
             <div class="welcome-box">
                 <h1 class="welcome-title">TMIS</h1>
                 <h1 class="welcome-title-under">Tiešsaistes Mūzikas Instrumentu Skola</h1>
-            </div>
-            
+            </div>            
         </div>
     </body>
 </html>

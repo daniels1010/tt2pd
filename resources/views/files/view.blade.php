@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="title">TMIS</h1>
-    <h2 class="title-under">Tiešsaistes mūzikas instrumentu skola</h2>
+    <x-main-title></x-main-title>
     <h3>Nosaukums: {{ $file->name }}</h3>
     <p>Faila URL: {{ $file->url }}</p>
     <div class="form-group">
