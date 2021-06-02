@@ -32,6 +32,8 @@ Route::resource('lessons-difficulties', LessonsDifficultiesController::class);
 Route::resource('files', FilesController::class);
 Route::resource('users', UsersController::class);
 
+Route::post('users/assign-lesson', [UsersController::class, 'assignLesson']);
+
 Route::get('lessons/{id}/add-diff', [LessonsController::class, 'addDifficulties']);
 Route::post('lessons/{id}/save-diff', [LessonsController::class, 'saveDifficulty']);
 

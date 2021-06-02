@@ -15,33 +15,31 @@
     <div class="row">
         <a href="{{ url('users/' . $user->id . '/edit') }}" class="btn btn-primary">Labot</a>
     </div>
-    @if (count($userLessons) > 0)
+    <h3>Piešķirtās nodarbības</h3>
+    @foreach($assignedLessons as $aLesson)
+        <div class="row">
+            {{ $aLesson->title }}
+        </div>
+    @endforeach()
+    <hr>
+    @if (count($availableLessons) > 0)
     <h3>Nodarbības piešķiršana</h3>
     <div class="row">
-    <form method="post" action="{{ url('/users/'.$user->id) }}">
-            <select name="taskOption">
-                <option value="first">First</option>
-                <option value="second">Second</option>
-                <option value="third">Third</option>
-            </select>
-            <input type="submit" value="Submit the form"/>
-            </form>
-
-        <form method="POST" action="{{ url('users/assign-lesson/' . $user->id) }}">
-        
+        <form method="POST" action="{{ url('users/assign-lesson') }}">        
             @csrf
             Nodarbības: 
             
-            <select name="assignLesson">
+            <select name="lesson_id">
                 <?php
-                //var_dump($lessons[0]->lesson->title); die();
-                foreach($userLessons as $userLesson) { ?>  
-                <option value="{{$userLesson->lesson_id}}">{{ $userLesson->lesson->title }}</option> 
+                foreach($availableLessons as $availableLesson) { ?>  
+                <option value="{{$availableLesson->id}}">{{ $availableLesson->title }}</option> 
                 <?php } ?>
                 </select>
             </label>
             <br>
-            <button class="btn btn-primary">Piešķirt</button>           
+            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <input type="hidden" name="school_id" value="{{ $user->school_id }}">
+            <input type="submit" class="btn btn-primary" value="Piešķirt">           
         </form>
     </div>
     @else

@@ -81,18 +81,16 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->first();   
-
-        $allLessons = Lesson::all();
-        $alreadyAssignedLessons = UserLessons::where(['user_id' => $id])->get();
-
-        // var_dump($allLessons); die();
-
-        // $selectOption = $_POST['assignLesson'];
-        // if (isset($selectOption)) { var_dump($selectOption); die();}
+        $user = User::where('id', $id)->first();
+        $assignedLessonIds = UserLessons::where(['user_id' => $id])->pluck('lesson_id');
+        $availableLessons = Lesson::whereNotIn('id', $assignedLessonIds)->get();
+        $assignedLessons = Lesson::whereIn('id', $assignedLessonIds)->get();
         
-
-        return view('users/view', ['userLessons' => $alreadyAssignedLessons])->with('user', $user);
+        return view('users/view', [
+            'assignedLessons' => $assignedLessons,
+            'availableLessons' => $availableLessons,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -132,6 +130,14 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::where('id', $id)->delete();
+        return redirect()->back();
+    }
+
+    public function assignLesson(Request $request){
+        $userLesson = new UserLessons();
+        $userLesson->fill($request->all());
+        $userLesson->save();
+
         return redirect()->back();
     }
 }
