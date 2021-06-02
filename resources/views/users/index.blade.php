@@ -20,10 +20,5 @@
             </form>
         @endforeach
     </div>   
-    <div class="row">
-        <a href="{{ url('users/create') }}" class="btn btn-primary">
-            Jauns lietotājs
-        </a>
-    </div> 
 </div>
 @endsection

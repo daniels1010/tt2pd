@@ -30,50 +30,6 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('users/create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(Request $request)
-    // {
-    //     $nameRule = 'required|string|min:2|max:50';
-    //     $rules = array(
-    //         'first_name' => $nameRule,
-    //         'last_name' => $nameRule,
-    //         'email' => [
-    //             'required',
-    //             'email',
-    //             'min:2',
-    //             'max:50',
-    //             Rule::unique('users', 'email')->where(function ($query) use ($request) {
-    //                 return $query->where('email', $request->email);
-    //             })
-    //         ],
-    //     );
-
-    //     $this->validate($request, $rules);
-
-    //     $user = new User();
-    //     $user->school_id = $request->user()->school->id;
-    //     $user->type = 3;
-    //     $user->fill($request->all());
-    //     $user->save();
-
-    //     return redirect('users/' . $user->id);
-    // }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id

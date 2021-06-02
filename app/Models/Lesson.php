@@ -10,9 +10,8 @@ class Lesson extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'poster_url', 'file_id'];
-
-    public function getLessonDifficulties()
-    {
-        return LessonsDifficulties::where(['lesson_id' => $this->id])->get();
+    
+    public function lessonDifficulties(){
+        return $this->hasMany(LessonsDifficulties::class);
     }
 }

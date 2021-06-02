@@ -24,18 +24,19 @@ Route::get('/', function () {
 });
 
 Route::resource('lessons', LessonsController::class);
+Route::get('lessons/{id}/add-diff', [LessonsController::class, 'addDifficulties']);
+Route::post('lessons/{id}/save-diff', [LessonsController::class, 'saveDifficulty']);
+
 Route::resource('schools', SchoolsController::class);
 Route::get('schools/{id}/add-teacher', [SchoolsController::class, 'addTeacher']);
 Route::post('schools/{id}/save-teacher', [SchoolsController::class, 'saveTeacher']);
+
+Route::resource('users', UsersController::class);
+Route::post('users/assign-lesson', [UsersController::class, 'assignLesson']);
+
 Route::resource('difficulties', DifficultiesController::class);
 Route::resource('lessons-difficulties', LessonsDifficultiesController::class);
 Route::resource('files', FilesController::class);
-Route::resource('users', UsersController::class);
-
-Route::post('users/assign-lesson', [UsersController::class, 'assignLesson']);
-
-Route::get('lessons/{id}/add-diff', [LessonsController::class, 'addDifficulties']);
-Route::post('lessons/{id}/save-diff', [LessonsController::class, 'saveDifficulty']);
 
 Auth::routes();
 

@@ -7,11 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\File;
 use App\Models\LessonsDifficulties;
-use App\Models\School;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use SebastianBergmann\Diff\Diff;
 
 class LessonsController extends Controller
 {
@@ -32,7 +29,12 @@ class LessonsController extends Controller
         $isTeacher = $user->isTeacher();
         $isAdmin = $user->isAdmin();
         
-        return view('lessons/index', ['user' => $user, 'lessons' => $lessons, 'isTeacher' => $isTeacher, 'isAdmin' => $isAdmin]);
+        return view('lessons/index', [
+            'user' => $user,
+            'lessons' => $lessons, 
+            'isTeacher' => $isTeacher,
+            'isAdmin' => $isAdmin
+        ]);
     }
 
     /**
@@ -88,8 +90,6 @@ class LessonsController extends Controller
     {
         $lesson = Lesson::where('id', $id)->first();
         $file = File::where('id', $lesson->file_id)->get();
-        // imeeedž https://i.ibb.co/1QF7bhw/missing-picture.jpg
-        // vidjio https://i.ibb.co/ZxyR7gP/missing-video.jpg
         return view('lessons/view', ['lesson' => $lesson, 'file' => $file]);
     }
 
@@ -135,28 +135,15 @@ class LessonsController extends Controller
     }
 
     public function addDifficulties($id){
-        $lesson = Lesson::where('id', $id)->first();
-        $lessonDifficulties = $lesson->getLessonDifficulties()->all();
-        $schoolDifficulties = Difficulty::where(['school_id' => $lesson->school_id])->pluck('name', 'id');
-
-        $availaleDifficulties = [];
-        foreach($schoolDifficulties as $sdiffId => $sdiff){
-            $isUsed = false;
-            foreach($lessonDifficulties as $ldiff){
-                if($sdiffId == $ldiff->difficulty_id){
-                    $isUsed = true;
-                } 
-            }
-
-            if(!$isUsed){
-                $availaleDifficulties[$sdiffId] = $sdiff;
-            }
-        }
+        $lesson = Lesson::where('id', $id)->first();    
+        $lessonDifficulties = $lesson->lessonDifficulties;
+        $usedDiffIds = $lesson->lessonDifficulties->pluck('difficulty_id');
+        $availableDifficulties = Difficulty::whereNotIn('id', $usedDiffIds)->pluck('name', 'id');
 
         return view('lessons/add-difficulty', [
             'lessonDifficulties' => $lessonDifficulties, 
             'lessonId' => $id,
-            'schoolDifficulties' => $availaleDifficulties,
+            'schoolDifficulties' => $availableDifficulties,
         ]);
     }
 
