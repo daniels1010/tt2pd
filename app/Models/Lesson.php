@@ -29,4 +29,19 @@ class Lesson extends Model
 
         return round($sum / $lessonCount);
     }
+
+    public function getPosterUrl(){
+        $imgExtensions = [
+            'png',
+            'jpg',
+            'jpeg',
+            'svg',
+            'gif',
+        ];
+        $defaultPosterUrl = "http://127.0.0.1:8000/storage/files/shares/default.jpg";
+        $pinfo = pathinfo($this->poster_url);
+        $isValid = $pinfo && isset($pinfo['extension']) && in_array($pinfo['extension'], $imgExtensions);
+
+        return $isValid ? $this->poster_url : $defaultPosterUrl;
+    }
 }

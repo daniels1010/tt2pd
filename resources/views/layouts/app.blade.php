@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('/vendor/laravel-filemanager/js/stand-alone-button.js') }}" defer></script>
+    <script src="{{ asset('js/fm-setup.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -72,7 +75,7 @@
                             @endif
                             @if (Auth::user()->isStudent())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="lessons">Nodarbības</a>
+                                    <a class="nav-link" href="{{ url('/lessons') }}">Nodarbības</a>
                                 </li>
                             @endif
                             <li class="nav-item dropdown">

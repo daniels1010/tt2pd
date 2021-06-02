@@ -25,14 +25,19 @@
                 :properties="$properties">
             </x-table>       
         @else
-        <div class="row">                    
+        <div class="row">   
+           
             @if (count($lessons) > 0)
                 @foreach ($lessons as $lesson)
+
+                <?php
+                    
+                ?>
                     <div class="col-lg-6 lesson-box-container">
                         <div class="lesson-box ">  
                             <a href="lessons/{{ $lesson->id }}">
                                 <h2>{{ $lesson->title }}</h2>
-                                <img class="lesson-thumbnail" src="{{ $lesson->poster_url }}" alt="Picture is missing">
+                                <div class="lesson-thumbnail" style="background-image: url('{{ $lesson->getPosterUrl() }}')"></div>
                             </a>
                         </div>
                     </div>
